@@ -1,4 +1,4 @@
-package proyectobassicprogrammers;
+package proyectobassicprogrammers.apiingresosyegresos.modelo;
 
 public class movimientodinero {
     private int monto;
