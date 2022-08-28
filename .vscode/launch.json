@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-ApiingresosyegresosApplication<apiingresosyegresos>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "proyectobassicprogrammers.apiingresosyegresos.ApiingresosyegresosApplication",
+            "projectName": "apiingresosyegresos",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
