@@ -1,5 +1,7 @@
 package proyectobassicprogrammers.apiingresosyegresos.modelo;
 
+import java.util.Date;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,17 +16,21 @@ public class Perfil {
     @Column(name="telefono")
     private String perfilTelefono;
     @Column(name="crearat")
-    private String crearAt;
+    private Date crearAt;
     @Column(name="actualizarat")
-    private String actualizarAt;
+    private Date actualizarAt;
+    @OneToOne
+    @JoinColumn(name="idempleado",referencedColumnName = "id")
+    private Empleado empleado;
     
-    
-    public Perfil(Long id, String perfilImagen, String perfilTelefono, String crearAt, String actualizarAt) {
+    public Perfil(Long id, String perfilImagen, String perfilTelefono, Date crearAt, Date actualizarAt,
+            Empleado empleado) {
         this.id = id;
         this.perfilImagen = perfilImagen;
         this.perfilTelefono = perfilTelefono;
         this.crearAt = crearAt;
         this.actualizarAt = actualizarAt;
+        this.empleado = empleado;
     }
     public Long getId() {
         return id;
@@ -44,19 +50,25 @@ public class Perfil {
     public void setPerfilTelefono(String perfilTelefono) {
         this.perfilTelefono = perfilTelefono;
     }
-    public String getCrearAt() {
+    public Date getCrearAt() {
         return crearAt;
     }
-    public void setCrearAt(String crearAt) {
+    public void setCrearAt(Date crearAt) {
         this.crearAt = crearAt;
     }
-    public String getActualizarAt() {
+    public Date getActualizarAt() {
         return actualizarAt;
     }
-    public void setActualizarAt(String actualizarAt) {
+    public void setActualizarAt(Date actualizarAt) {
         this.actualizarAt = actualizarAt;
     }
-
-
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+    
+   
 
 }

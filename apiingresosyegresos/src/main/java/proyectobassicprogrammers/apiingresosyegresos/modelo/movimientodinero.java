@@ -1,59 +1,105 @@
 package proyectobassicprogrammers.apiingresosyegresos.modelo;
+import java.util.Date;
+
 import javax.persistence.*;
 @Entity
-
+@Table(name="movimientodinero")
 public class movimientodinero {
     
 
     @Id
-    private long idempleado;
-    @Column(name="actualizarat", nullable=true, length=undefined)
-    private String actualizarat;
-    @Column(name="monto", nullable=true, length=undefined)
-    private String monto;
-    private long id;
-    private long idempresa;
-    public Student() {}
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
+    private Long id;
+    
+    @Column(name="concepto")
+    private String concepto;
 
-    public long getIdempleado() {
-        return idempleado;
-    }
-    public void setIdempleado(long idempleado) {
-        this.idempleado = idempleado;
-    }
+    @Column(name="monto")
+    private float monto;
 
+    @Column(name="crearat")
+    private Date crearAt;
+    @Column(name="actualizarat")
+    private Date actualizarAt;
+    
+    @ManyToOne
+    @JoinColumn(name="idempresa",referencedColumnName = "id")
+    private Empresa empresa;
 
-    public String getActualizarat() {
-        return actualizarat;
-    }
-    public void setActualizarat(String actualizarat) {
-        this.actualizarat = actualizarat;
-    }
+    @ManyToOne
+    @JoinColumn(name="idempleado",referencedColumnName = "id")
+    private Empleado empleado;
 
-
-    public String getMonto() {
-        return monto;
-    }
-    public void setMonto(String monto) {
+    public movimientodinero(Long id, String concepto, float monto, Date crearAt, Date actualizarAt, Empresa empresa,
+            Empleado empleado) {
+        this.id = id;
+        this.concepto = concepto;
         this.monto = monto;
+        this.crearAt = crearAt;
+        this.actualizarAt = actualizarAt;
+        this.empresa = empresa;
+        this.empleado = empleado;
     }
 
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(long id) {
+
+    public void setId(Long id) {
         this.id = id;
     }
 
-
-    public long getIdempresa() {
-        return idempresa;
-    }
-    public void setIdempresa(long idempresa) {
-        this.idempresa = idempresa;
+    public String getConcepto() {
+        return concepto;
     }
 
+    public void setConcepto(String concepto) {
+        this.concepto = concepto;
+    }
+
+    public float getMonto() {
+        return monto;
+    }
+
+    public void setMonto(float monto) {
+        this.monto = monto;
+    }
+
+    public Date getCrearAt() {
+        return crearAt;
+    }
+
+    public void setCrearAt(Date crearAt) {
+        this.crearAt = crearAt;
+    }
+
+    public Date getActualizarAt() {
+        return actualizarAt;
+    }
+
+    public void setActualizarAt(Date actualizarAt) {
+        this.actualizarAt = actualizarAt;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+
+    
+    
 
 }
     
