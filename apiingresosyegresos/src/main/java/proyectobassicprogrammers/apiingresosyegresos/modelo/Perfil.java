@@ -1,4 +1,4 @@
-package proyectobassicprogrammers.modelo;
+package proyectobassicprogrammers.apiingresosyegresos.modelo;
 
 import javax.persistence.*;
 
