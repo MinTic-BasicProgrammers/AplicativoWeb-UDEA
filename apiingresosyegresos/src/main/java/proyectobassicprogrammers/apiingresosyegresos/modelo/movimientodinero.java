@@ -1,41 +1,62 @@
 package proyectobassicprogrammers.apiingresosyegresos.modelo;
+import javax.persistence.*;
+@Entity
 
 public class movimientodinero {
-    private int monto;
-    private String concepto;
-    private String usuario;
+    
 
-    public movimientodinero(int monto, String concepto, String usuario){
-        this.monto= monto;
-        this.concepto= concepto;
-        this.usuario = usuario;
+    @Id
+    private long idempleado;
+    @Column(name="actualizarat", nullable=true, length=undefined)
+    private String actualizarat;
+    @Column(name="monto", nullable=true, length=undefined)
+    private String monto;
+    private long id;
+    private long idempresa;
+    public Student() {}
+
+    public long getIdempleado() {
+        return idempleado;
+    }
+    public void setIdempleado(long idempleado) {
+        this.idempleado = idempleado;
     }
 
-    public int getMonto() {
+
+    public String getActualizarat() {
+        return actualizarat;
+    }
+    public void setActualizarat(String actualizarat) {
+        this.actualizarat = actualizarat;
+    }
+
+
+    public String getMonto() {
         return monto;
     }
-
-    public void setMonto(int monto) {
+    public void setMonto(String monto) {
         this.monto = monto;
     }
 
-    public String getConcepto() {
-        return concepto;
-    }
 
-    public void setConcepto(String concepto) {
-        this.concepto = concepto;
+    public long getId() {
+        return id;
     }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setId(long id) {
+        this.id = id;
     }
 
 
-    
+    public long getIdempresa() {
+        return idempresa;
+    }
+    public void setIdempresa(long idempresa) {
+        this.idempresa = idempresa;
+    }
+
 
 }
+    
+    
+
+
