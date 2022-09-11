@@ -1,0 +1,5 @@
+
+apiingresosyegresos/pom.xml
+apiingresosyegresos/src/main/java/proyectobassicprogrammers/apiingresosyegresos/repositorio/EmpresaRepositorio.java
+apiingresosyegresos/src/main/resources/application.properties
+apiingresosyegresos/target/test-classes/proyectobassicprogrammers/apiingresosyegresos/ApiingresosyegresosApplicationTests.class
