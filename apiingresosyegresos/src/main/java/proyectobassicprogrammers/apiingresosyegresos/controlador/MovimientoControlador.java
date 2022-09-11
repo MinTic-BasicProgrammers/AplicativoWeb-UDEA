@@ -9,19 +9,34 @@ import proyectobassicprogrammers.apiingresosyegresos.modelo.*;
 import proyectobassicprogrammers.apiingresosyegresos.repositorio.*;
 
 @RestController
-
+@RequestMapping("/movimientodinero")
+@CrossOrigin(origins = "*")
 public class MovimientoControlador {
-    public MovimientroControlador (ServicioMovimientoDinero smd 1) {this.smd1 * smd1;}
+    @Autowired
+    private movimientodinero movimientodinero;
 
-@GetMapping(*/movimientodinero)
-public list <movimientodinero> informe () {return this.smd1.getinforme();}
+    @RequestMapping(value = "/listar", method = RequestMethod.GET)
+    public List<movimientodinero> listar() {
+        return repositorio.findAll();
+    }
 
-@PostMapping(*/movimientodinero*)
-public movimientodinero crearEmpleado(@RequestBody movimientodinero ){...}
+    @RequestMapping(value = "/obtener/{id}", method = RequestMethod.GET)
+    public movimientodinero obtener(@PathVariable long id) {
+        return repositorio.findById(id).get();
+    }
 
-@PutMapping (*/movimientodinero/{id}*)
-public movimientodinero actualizarEmpresa(@PathVariable long id, @RequestBody movimientodinero ){...}
+    @RequestMapping(value = "/agregar", method = RequestMethod.POST)
+    public movimientodinero crearmovimientodinero(@RequestBody movimientodinero movimientodinero) {
+        return repositorio.save(movimientodinero);
+    }
 
-@DeleteMapping (*movimientodinero/{id}*)
-public movimientodinero lisEmpresa(@PathVariable(value = "id")long id){...}
+    @RequestMapping(value = "/modificar", method = RequestMethod.PUT)
+    public Empresa modificarmovimientodinero(@RequestBody movimientodinero movimientodinero) {
+        return repositorio.save(movimientodinero);
+    }
+
+    @RequestMapping(value = "/eliminar/{id}", method = RequestMethod.DELETE)
+    public void eliminarmovimientodinero(@PathVariable long id) {
+        repositorio.eliminarmovimientodinero(id);
+    }
 }
