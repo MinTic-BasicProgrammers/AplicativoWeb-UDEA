@@ -11,8 +11,8 @@ create table perfil(
     id integer,
     imagen varchar(50) not null,
     telefono varchar(12) not null,
-    crearAT date,
-    actualizarAT date,
+    crearAt date,
+    actualizarAt date,
     constraint perfil_pk primary key(id)
 );
 
@@ -23,8 +23,8 @@ create table empresa(
     documento varchar(50) not null unique,
     telefono varchar(12) not null,
     direccion varchar(50) not null,
-    crearAT date,
-    actualizarAT date,
+    crearAt date,
+    actualizarAt date,
     constraint empresa_pk primary key(id)
 );
 
@@ -38,8 +38,8 @@ create table empleado(
     rol_actual rol,
     idEmpresa integer not null,
     idPerfil integer not null,
-    crearAT date,
-    actualizarAT date,
+    crearAt date,
+    actualizarAt date,
     constraint empleado_pk primary key(id),
     constraint empleado_empresa_idEmpresa_fk foreign key(idEmpresa) references empresa(id),
     constraint empleado_perfil_idPerfil_fk foreign key(idPerfil) references perfil(id)
@@ -52,8 +52,8 @@ create table transaccion(
     monto float not null,
     idEmpleado integer not null,
     idEmpresa integer not null,
-    crearAT date,
-    actualizarAT date,
+    crearAt date,
+    actualizarAt date,
     constraint transaccion_pk primary key(id),
     constraint transaccion_empleado_idEmpleado_fk foreign key(idEmpleado) references empleado(id),
     constraint transaccion_empresa_idEmpresa_fk foreign key(idEmpresa) references empresa(id)
