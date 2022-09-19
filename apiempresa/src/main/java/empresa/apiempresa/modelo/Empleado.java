@@ -4,93 +4,46 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 @Table(name = "empleado")
 public class Empleado {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id",nullable=true)
     private long id;
 
-    @Column(name = "email", nullable = true, unique = true, length = 50)
+    @Column(name = "email", length = 50)
     private String email;
 
-    @Column(name = "rol", nullable = false, length = 13)
+    @Column(name = "rol", nullable = true, length = 13)
     @Enumerated(value = EnumType.STRING)
     private Rol rol;
 
     @OneToOne
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "idperfil", referencedColumnName = "id")
     private Perfil perfil;
 
     @ManyToOne
     @JoinColumn(name = "idempresa", referencedColumnName = "id")
     private Empresa empresa;
 
-    @Column(name = "crearat", nullable = true)
+    @Column(name = "crearat")
     private Date crearat;
 
-    @Column(name = "actualizarat", nullable = true)
+    @Column(name = "actualizarat")
     private Date actualizarat;
 
-
-    public Empleado(long id, String email, Rol rol, Perfil perfil, Empresa empresa, Date crearat, Date actualizarat) {
-        this.id = id;
-        this.email = email;
-        this.rol = rol;
-        this.perfil = perfil;
-        this.empresa = empresa;
-        this.crearat = crearat;
-        this.actualizarat = actualizarat;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Perfil getPerfil() {
-        return perfil;
-    }
-
-    public void setPerfil(Perfil perfil) {
-        this.perfil = perfil;
-    }
-
-    public Empresa getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }
-
-    public Date getCrearat() {
-        return crearat;
-    }
-
-    public void setCrearat(Date crearat) {
-        this.crearat = crearat;
-    }
-
-    public Date getActualizarat() {
-        return actualizarat;
-    }
-
-    public void setActualizarat(Date actualizarat) {
-        this.actualizarat = actualizarat;
-    }
-
+     
 }
