@@ -12,6 +12,7 @@ import empresa.apiempresa.modelo.*;
 @RestController
 @RequestMapping("/empresas")
 public class EmpresaControlador {
+
     @Autowired // crea una clase implementacion de empresa repositorio con los metodos que
     // automaticamente ya tioene en el JPArepositorio
     private EmpresaRepositorio repositorio;
@@ -36,11 +37,9 @@ public class EmpresaControlador {
         return repositorio.save(empresa);
     }
 
-    /*
-     * @RequestMapping(value = "/eliminar/{id}", method = RequestMethod.GET)
-     * public void eliminar(@PathVariable long id) {
-     * repositorio.deleteById(id);
-     * }
-     */
+    @RequestMapping(value = "/eliminar/{id}", method = RequestMethod.DELETE)
+    public void eliminar(@PathVariable long id) {
+        repositorio.deleteById(id);
+    }
 
 }
