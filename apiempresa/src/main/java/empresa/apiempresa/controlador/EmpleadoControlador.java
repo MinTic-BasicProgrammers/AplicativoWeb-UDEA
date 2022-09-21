@@ -34,7 +34,7 @@ public class EmpleadoControlador {
         return servicio.guardar(empleado);
     }
 
-    @RequestMapping(value = "/modificar", method = RequestMethod.PUT)
+    @RequestMapping(value = "/modificar/{id}", method = RequestMethod.PATCH)
     public Empleado actualizar(@RequestBody Empleado empleado) {
         return servicio.guardar(empleado);
     }

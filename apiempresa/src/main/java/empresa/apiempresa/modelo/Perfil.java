@@ -3,6 +3,9 @@ package empresa.apiempresa.modelo;
 import java.util.Date;
 
 import javax.persistence.*;
+
+import org.hibernate.annotations.GenericGenerator;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,9 +22,10 @@ import lombok.ToString;
 public class Perfil {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id",nullable=true)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "secuencia_perfil")
+    @GenericGenerator(name = "secuencia_perfil", strategy="increment")
+    @Column(name = "id")
+    private long id;
 
     @Column(name="imagen", length=50)
     private String imagen;

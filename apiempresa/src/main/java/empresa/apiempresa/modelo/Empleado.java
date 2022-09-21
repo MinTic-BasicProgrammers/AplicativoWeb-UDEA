@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,8 +22,9 @@ import lombok.ToString;
 public class Empleado {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id",nullable=true)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "secuencia_empleado")
+    @GenericGenerator(name = "secuencia_empleado", strategy="increment")
+    @Column(name = "id")
     private long id;
 
     @Column(name = "email", length = 50)
@@ -44,6 +47,5 @@ public class Empleado {
 
     @Column(name = "actualizarat")
     private Date actualizarat;
-
      
 }
