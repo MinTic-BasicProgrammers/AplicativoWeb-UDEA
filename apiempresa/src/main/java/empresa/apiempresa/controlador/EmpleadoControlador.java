@@ -23,12 +23,7 @@ public class EmpleadoControlador {
     public Empleado obtener(@PathVariable long id) {
         return servicio.obtener(id);
     }
-
-    @RequestMapping(value = "/buscar/{email}", method = RequestMethod.GET)
-    public List<Empleado> buscar(@PathVariable String email) {
-        return servicio.buscar(email);
-    }
-
+    
     @RequestMapping(value = "/agregar", method = RequestMethod.POST)
     public Empleado crear(@RequestBody Empleado empleado) {
         return servicio.guardar(empleado);

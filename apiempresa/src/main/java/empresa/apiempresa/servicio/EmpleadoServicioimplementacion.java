@@ -31,11 +31,6 @@ public class EmpleadoServicioimplementacion implements EmpleadoServicio {
     }
 
     @Override
-    public List<Empleado> buscar(String email) {
-        return repositorio.buscar(email);
-    }
-
-    @Override
     public Empleado guardar(Empleado ciudad) {
         return repositorio.save(ciudad);
     }
@@ -48,6 +43,11 @@ public class EmpleadoServicioimplementacion implements EmpleadoServicio {
         } catch (Exception ex) {
             return false;
         }
+    }
+
+    @Override
+    public List<Empleado> buscar(String email) {
+        return repositorio.buscar(email);
     }
 
 }
