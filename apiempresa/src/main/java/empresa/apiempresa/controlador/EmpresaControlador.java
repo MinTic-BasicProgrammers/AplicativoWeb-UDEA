@@ -4,42 +4,39 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import empresa.apiempresa.repositorio.EmpresaRepositorio;
-
 import empresa.apiempresa.modelo.*;
+import empresa.apiempresa.servicio.*;
 
 @RestController
 @RequestMapping("/empresas")
 public class EmpresaControlador {
 
-    @Autowired // crea una clase implementacion de empresa repositorio con los metodos que
-    // automaticamente ya tioene en el JPArepositorio
-    private EmpresaRepositorio repositorio;
+    @Autowired
+    private EmpresaServicio servicio;
 
     @RequestMapping(value = "/listar", method = RequestMethod.GET)
     public List<Empresa> listar() {
-        return repositorio.findAll();
+        return servicio.listar();
     }
 
     @RequestMapping(value = "/obtener/{id}", method = RequestMethod.GET)
     public Empresa obtener(@PathVariable long id) {
-        return repositorio.findById(id).get();
+        return servicio.obtener(id);
     }
-
+    
     @RequestMapping(value = "/agregar", method = RequestMethod.POST)
     public Empresa crear(@RequestBody Empresa empresa) {
-        return repositorio.save(empresa);
+        return servicio.guardar(empresa);
     }
 
-    @RequestMapping(value = "/modificar", method = RequestMethod.PUT)
+    @RequestMapping(value = "/modificar/{id}", method = RequestMethod.PATCH)
     public Empresa actualizar(@RequestBody Empresa empresa) {
-        return repositorio.save(empresa);
+        return servicio.guardar(empresa);
     }
 
     @RequestMapping(value = "/eliminar/{id}", method = RequestMethod.DELETE)
-    public void eliminar(@PathVariable long id) {
-        repositorio.deleteById(id);
+    public boolean eliminar(@PathVariable long id) {
+        return servicio.eliminar(id);
     }
 
 }
