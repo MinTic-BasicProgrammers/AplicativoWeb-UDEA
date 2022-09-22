@@ -2,43 +2,42 @@ package empresa.apiempresa.controlador;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import empresa.apiempresa.modelo.Transaccion;
-import empresa.apiempresa.repositorio.TransaccionRepositorio;
-
+import empresa.apiempresa.modelo.*;
+import empresa.apiempresa.servicio.*;
 
 
 @RestController
 @RequestMapping("/transaccion")
 public class TransaccionControlador {
     @Autowired
-    private TransaccionRepositorio transaccion;
+    private TransaccionServicio servicio;
 
     @RequestMapping(value = "/listar", method = RequestMethod.GET)
     public List<Transaccion> listar() {
-        return transaccion.findAll();
+        return servicio.listar();
     }
 
-    @RequestMapping(value = "/obtener/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/empresa/{id}/movimientos", method = RequestMethod.GET)
     public Transaccion obtener(@PathVariable long id) {
-        return transaccion.findById(id).get();
+        return servicio.obtener(id);
     }
-
+    
     @RequestMapping(value = "/agregar", method = RequestMethod.POST)
-    public Transaccion crear(@RequestBody Transaccion transaccionn) {
-        return transaccion.save(transaccionn);
+    public Transaccion crear(@RequestBody Transaccion transaccion) {
+        return servicio.guardar(transaccion);
     }
 
-    @RequestMapping(value = "/modificar", method = RequestMethod.PATCH)
-    public Transaccion actualizar(@RequestBody Transaccion tranzaccion) {
-        return transaccion.save(tranzaccion);
+    @RequestMapping(value = "/modificar/{id}", method = RequestMethod.PATCH)
+    public Transaccion actualizar(@RequestBody Transaccion transaccion) {
+        return servicio.guardar(transaccion);
     }
 
     @RequestMapping(value = "/eliminar/{id}", method = RequestMethod.DELETE)
-    public void eliminar(@PathVariable long id) {
-      transaccion.deleteById(id);
+    public boolean eliminar(@PathVariable long id) {
+        return servicio.eliminar(id);
     }
+
 }
 

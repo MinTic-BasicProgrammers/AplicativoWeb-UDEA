@@ -1,5 +1,4 @@
 package empresa.apiempresa.servicio;
-
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,30 +8,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import empresa.apiempresa.modelo.*;
-import empresa.apiempresa.repositorio.EmpleadoRepositorio;
+import empresa.apiempresa.repositorio.TransaccionRepositorio;
+
 
 @Service
-public class EmpleadoServicioimplementacion implements EmpleadoServicio {
+public class TransaccionServicioimplementacion implements TransaccionServicio {
 
     @Autowired
-    private EmpleadoRepositorio repositorio;
+    private TransaccionRepositorio repositorio;
 
     @PersistenceContext
     public EntityManager em;
 
     @Override
-    public List<Empleado> listar() {
+    public List<Transaccion> listar() {
         return repositorio.findAll();
     }
 
     @Override
-    public Empleado obtener(Long id) {
+    public Transaccion obtener(Long id) {
         return repositorio.findById(id).get();
     }
 
     @Override
-    public Empleado guardar(Empleado empleado) {
-        return repositorio.save(empleado);
+    public Transaccion guardar(Transaccion transaccion) {
+        return repositorio.save(transaccion);
     }
 
     @Override
@@ -44,10 +44,4 @@ public class EmpleadoServicioimplementacion implements EmpleadoServicio {
             return false;
         }
     }
-
-    @Override
-    public List<Empleado> buscar(String email) {
-        return repositorio.buscar(email);
-    }
-
 }
