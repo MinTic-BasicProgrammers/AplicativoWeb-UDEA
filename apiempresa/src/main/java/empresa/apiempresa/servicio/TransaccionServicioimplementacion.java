@@ -11,6 +11,7 @@ import empresa.apiempresa.modelo.*;
 import empresa.apiempresa.repositorio.TransaccionRepositorio;
 
 
+
 @Service
 public class TransaccionServicioimplementacion implements TransaccionServicio {
 
@@ -34,7 +35,7 @@ public class TransaccionServicioimplementacion implements TransaccionServicio {
     public Transaccion guardar(Transaccion transaccion) {
         return repositorio.save(transaccion);
     }
-
+    
     @Override
     public boolean eliminar(Long id) {
         try {
@@ -44,4 +45,9 @@ public class TransaccionServicioimplementacion implements TransaccionServicio {
             return false;
         }
     }
+
+    public List<Transaccion> buscar(long empresa) {
+        return repositorio.buscar(empresa);
+    }
+
 }

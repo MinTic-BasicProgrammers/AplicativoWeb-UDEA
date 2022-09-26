@@ -37,7 +37,7 @@ public class EmpleadoControlador {
     @RequestMapping(value = "/eliminar/{id}", method = RequestMethod.DELETE)
     public boolean eliminar(@PathVariable long id) {
         return servicio.eliminar(id);
-    }
+    }    
 
 }
 

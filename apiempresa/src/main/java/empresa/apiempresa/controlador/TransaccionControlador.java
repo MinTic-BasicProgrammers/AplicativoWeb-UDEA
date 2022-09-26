@@ -19,10 +19,11 @@ public class TransaccionControlador {
         return servicio.listar();
     }
 
-    @RequestMapping(value = "/empresa/{id}/movimientos", method = RequestMethod.GET)
-    public Transaccion obtener(@PathVariable long id) {
+    @RequestMapping(value = "/obtener/{id}", method = RequestMethod.GET)
+    public Transaccion obtener(@PathVariable Long id){
         return servicio.obtener(id);
     }
+    
     
     @RequestMapping(value = "/agregar", method = RequestMethod.POST)
     public Transaccion crear(@RequestBody Transaccion transaccion) {
@@ -37,6 +38,11 @@ public class TransaccionControlador {
     @RequestMapping(value = "/eliminar/{id}", method = RequestMethod.DELETE)
     public boolean eliminar(@PathVariable long id) {
         return servicio.eliminar(id);
+    }
+
+    @RequestMapping(value = "/buscar/{idempresa}", method = RequestMethod.GET)
+    public List<Transaccion> buscar(@PathVariable Long empresa) {
+        return servicio.buscar(empresa);
     }
 
 }
