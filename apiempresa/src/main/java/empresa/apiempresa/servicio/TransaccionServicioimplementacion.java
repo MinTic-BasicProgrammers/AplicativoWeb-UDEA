@@ -1,9 +1,6 @@
 package empresa.apiempresa.servicio;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +15,8 @@ public class TransaccionServicioimplementacion implements TransaccionServicio {
     @Autowired
     private TransaccionRepositorio repositorio;
 
-    @PersistenceContext
-    public EntityManager em;
-
     @Override
-    public List<Transaccion> listar() {
+    public List<Transaccion>  listar() {
         return repositorio.findAll();
     }
 
@@ -46,7 +40,7 @@ public class TransaccionServicioimplementacion implements TransaccionServicio {
         }
     }
 
-    public List<Transaccion> buscar(long empresa) {
+    public List<Transaccion> buscar(Long empresa) {
         return repositorio.buscar(empresa);
     }
 

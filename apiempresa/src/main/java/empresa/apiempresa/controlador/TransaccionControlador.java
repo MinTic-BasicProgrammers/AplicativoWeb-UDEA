@@ -23,7 +23,7 @@ public class TransaccionControlador {
     public Transaccion obtener(@PathVariable Long id){
         return servicio.obtener(id);
     }
-    
+   
     
     @RequestMapping(value = "/agregar", method = RequestMethod.POST)
     public Transaccion crear(@RequestBody Transaccion transaccion) {
@@ -40,7 +40,7 @@ public class TransaccionControlador {
         return servicio.eliminar(id);
     }
 
-    @RequestMapping(value = "/buscar/{idempresa}", method = RequestMethod.GET)
+    @RequestMapping(value = "/buscar/{empresa}", method = RequestMethod.GET)
     public List<Transaccion> buscar(@PathVariable Long empresa) {
         return servicio.buscar(empresa);
     }
