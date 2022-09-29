@@ -11,8 +11,6 @@ import empresa.apiempresa.modelo.*;
 
 @Repository
 public interface TransaccionRepositorio extends JpaRepository <Transaccion, Long> {
-    @Query("SELECT t  from Transaccion t JOIN Empresa e on t.empresa = e.id")
+    @Query("SELECT t  from Transaccion t JOIN Empresa e on t.empresa = e.id where t.empresa = '2'")
     List<Transaccion> buscar(Long empresa);
-
-
 }

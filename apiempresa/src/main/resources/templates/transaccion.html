@@ -1,0 +1,79 @@
+<nav id="modulotransaccion" th:fragment="modulo-transaccion">
+    <h2><b th:text="#{Diseño.Transacciones.Titulo}"></b></h2>
+
+    <div th:insert="transaccioneditar :: modulo-transaccioneditar"> </div>
+    <div th:insert="decidir :: modulo-decidir"> </div>
+
+    <input type="text" id="dato">
+    <button type="submit" class="btn btn-primary" id="buscar" th:text="#{Diseño.Transacciones.BotonBuscar}"></button>
+
+    <table id="datagridTransacciones" class="table table-striped table-bordered table-responsive" style="width: 100%">
+        <thead class="thead-dark">
+            <th th:text="#{Diseño.Transacciones.TituloCampo1}" />
+            <th th:text="#{Diseño.Transacciones.TituloCampo2}" />
+            <th th:text="#{Diseño.Transacciones.TituloCampo3}" />
+            <th>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#transaccioneditar"
+                    data-id="0" th:text="#{Diseño.Transacciones.BotonAgregar}">          
+                </button>
+            </th>
+        </thead>
+        <tbody>
+            <tr th:each="transaccion, tipoFila : ${paginaActual.content}" th:style="${tipoFila.odd}? 'font-weight: bold;'">
+                <td th:text="${transaccion.id}" />
+                <td th:text="${transaccion.concepto}" />
+                <td th:text="${transaccion.monto}" />
+                <td>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#transaccioneditar"
+                        th:data-id="${transaccion.id}">
+                        <i class="fa fa-edit"></i>
+                    </button>
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#decidir"
+                        th:attr="data-ruta='/transaccion/eliminar/'+${transaccion.id}">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <nav aria-label="Area de navegacion">
+        <div th:if="${paginaActual.totalPages>0}">
+            <ul class="pagination">
+                <li th:each="numeroPagina: ${numerosPaginas}">
+                    <span class="page-item" th:classappend="${numeroPagina==paginaActual.number + 1}? active">
+                        <a class="page-item" th:href="@{'/transaccion/listar/'+${numeroPagina}+'/'+${paginaActual.size}}"
+                            th:text=${numeroPagina} th:class="page-link"></a>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <script>
+        $("#transaccioneditar").on("show.bs.modal", function (event) {
+            var id = $(event.relatedTarget).data("id");
+            $.get("/transaccion/editar/" + id, function (data) {
+                var modal = $(data);
+                var contenidoModal = modal.find(".modal-content");
+                $("#transaccioneditar").find(".modal-content").html(contenidoModal);
+            });
+        });
+
+        $("#decidir").on("show.bs.modal", function (event) {
+            var ruta = $(event.relatedTarget).data("ruta");
+            $("#decidir").find("#btnAceptar").attr("href", ruta);
+        });
+
+        $('#buscar').on('click', function (event) {
+            var dato = $('#dato').val();
+            $.get('/transaccion/buscar?dato=' + dato, function (data) {
+                var transaccion = $(data);
+                var contenido = transaccion.html();
+                //window.alert(contenido);
+                $('#modulotrasancciones').html(contenido);
+                location.reload();
+            });
+        });
+
+    </script>
+</nav>

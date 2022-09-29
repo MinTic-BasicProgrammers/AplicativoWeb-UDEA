@@ -12,8 +12,8 @@ public interface TransaccionServicio {
 
 	public Transaccion guardar(Transaccion transaccion); //Permite agregar y modificar informacion del Empelado
 
-	public boolean eliminar(Long id); //Eliminar el usuario
+	public boolean eliminar(Long empresa); //Eliminar el usuario
 
-	public List<Transaccion> buscar(Long id);
+	public List<Transaccion> buscar(Long Empresa);
     
 }

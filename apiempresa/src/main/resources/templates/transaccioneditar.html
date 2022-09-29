@@ -1,0 +1,34 @@
+<nav id="transaccioneditar" th:fragment="modulo-transaccioneditar" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" th:if="${transaccioneditada.id>0}" th:text="'Editando '+${transaccioneditada.nombre}"></h5>
+                <h5 class="modal-title" th:if="${transaccioneditada.id==0}" th:text="#{Diseño.Transacciones.TituloAgregando}"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form th:action="@{/transaccion/guardar}" th:object="${transaccioneditada}" method="POST">
+                <div class="modal-body">
+                    <div class="form-group" style="width:100%">
+                        <label th:text="#{Diseño.Transacciones.TituloCampo1}" />
+                        <input class="form-control" type="number" th:field="*{id}" name="id" id="id">
+                    </div>
+                    <div class="form-group" style="width:100%">
+                        <label th:text="#{Diseño.Transacciones.TituloCampo2}" />
+                        <input class="form-control" type="text" th:field="*{concepto}" name="concepto" id="concepto">
+                    </div>
+                    <div class="form-group" style="width:100%">
+                        <label th:text="#{Diseño.Transacciones.TituloCampo3}" />
+                        <input class="form-control" type="text" th:field="*{monto}" name="monto" id="monto">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</nav>

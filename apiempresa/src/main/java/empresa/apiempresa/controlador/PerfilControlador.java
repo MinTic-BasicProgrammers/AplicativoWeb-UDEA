@@ -20,9 +20,9 @@ public class PerfilControlador {
         return repositorio.findAll();
     }
 
-    @RequestMapping(value = "/obtener/{id}", method = RequestMethod.GET)
-    public Perfil obtener(@PathVariable long id) {
-        return repositorio.findById(id).get();
+    @RequestMapping(value = "/obtener/{empresa}", method = RequestMethod.GET)
+    public Perfil obtener(@PathVariable long empresa) {
+        return repositorio.findById(empresa).get();
     }
 
     @RequestMapping(value = "/agregar", method = RequestMethod.POST)

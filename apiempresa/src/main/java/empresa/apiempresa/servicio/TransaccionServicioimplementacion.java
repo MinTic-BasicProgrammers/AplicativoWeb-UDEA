@@ -31,9 +31,9 @@ public class TransaccionServicioimplementacion implements TransaccionServicio {
     }
     
     @Override
-    public boolean eliminar(Long id) {
+    public boolean eliminar(Long empresa) {
         try {
-            repositorio.deleteById(id);
+            repositorio.deleteById(empresa);
             return true;
         } catch (Exception ex) {
             return false;

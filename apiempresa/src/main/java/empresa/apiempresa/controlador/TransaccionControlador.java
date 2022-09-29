@@ -35,9 +35,9 @@ public class TransaccionControlador {
         return servicio.guardar(transaccion);
     }
 
-    @RequestMapping(value = "/eliminar/{id}", method = RequestMethod.DELETE)
-    public boolean eliminar(@PathVariable long id) {
-        return servicio.eliminar(id);
+    @RequestMapping(value = "/eliminar/{empresa}", method = RequestMethod.DELETE)
+    public boolean eliminar(@PathVariable long empresa) {
+        return servicio.eliminar(empresa);
     }
 
     @RequestMapping(value = "/buscar/{empresa}", method = RequestMethod.GET)
